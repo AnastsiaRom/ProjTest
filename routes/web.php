@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 use Illuminate\Http\Client\Request;
+
+use App\Http\Controllers\LoginController;
+
+use App\User;
 
 Route::get('/', function () 
 {
@@ -52,6 +55,20 @@ Route::name('user.')->group(function ()
     {
         return view('adminChange');
     }]);
+
+
+    // ПРИМЕР
+    Route::prefix('auth')->group(function() {
+        Route::post('/signin', [\App\Http\Controllers\LoginController::class, 'signin']);
+    });
+
+    Route::prefix('film')->group(function() {
+        // Route::post('/', [FilmController::class, 'store']);
+        // Route::put('/',  [FilmController::class, 'update']);
+        // Route::delete('/', [FilmController::class, 'delete']);
+    });
+
+
 
     // Route::get('/moderCreat', function () {
     //     if (!Auth::check()){
