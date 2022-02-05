@@ -26,7 +26,7 @@ class CartController extends Controller
      */
     public function create()
     {
-        return view('moderCreat');
+        return view('moderCreat/show');
     }
 
     /**
@@ -47,7 +47,7 @@ class CartController extends Controller
      */
     public function show(Cart $cart)
     {
-        return view('show');
+        return view('moderCreat/show');
     }
 
     /**
@@ -58,7 +58,7 @@ class CartController extends Controller
      */
     public function edit(Cart $cart)
     {
-        return view('moderCreat', compact('cart'));
+        return view('moderCreat');
     }
 
     /**

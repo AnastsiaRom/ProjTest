@@ -2,21 +2,22 @@
 
 @section('content')
     <h1>Создание карточки фильма</h1>
-    <form action="/moderCreat/submit" method="post">
+    <form action="{{ route('user.moderCreat/show') }}" method="POST">
         @csrf
 
-        <div class="form-group">
-            <label for="name">Имя создателя карточки</label>
-            <input type="text" name="name" placeholder="Ваше имя" id="name" class="form-control">
+        <div class="form-outline mb-2">
+            <input type="text" id="form3Example3cg" name="user_id" class="form-control form-control-lg" required="" autofocus="" placeholder="Имя создателя карточки" />
+            <label class="form-label" for="form3Example3cg">Ваше имя</label>
         </div>
-        <div class="form-group">
-            <label for="title">Введите название фильма</label>
-            <input type="text" name="title" placeholder="Введите название фильма" id="title" class="form-control">
+
+        <div class="form-outline mb-2">
+            <input type="text" id="form3Example3cg" name="title" class="form-control form-control-lg" required="" autofocus="" placeholder="Введите название фильма" />
+            <label class="form-label" for="form3Example3cg">Название</label>
         </div>
 
         <div class="form-group">
-            <label for="img">Заставка</label>
-            <input type="text" name="img" placeholder="Заставка" id="img" class="form-control">
+            <label for="path">Постер</label>
+            <input type="text" name="path" placeholder="Загрузите фотографию" id="form3Example3cg" class="form-control form-control-lg">
         </div>
 
         <div class="form-group">
@@ -35,17 +36,19 @@
             </label>
         </div>
 
-        <div class="form-group">
-            <label for="information">Информация</label>
-            <textarea name="description" placeholder="Введите название фильма" id="information" class="form-control" ></textarea>
+        <div class="form-outline mb-2">
+            <input type="text" id="form3Example3cg" name="description" class="form-control form-control-lg" required="" autofocus="" placeholder="Введите название фильма" />
+            <label class="form-label" for="form3Example3cg">Описание фильма</label>
+        </div>
 
+        <div class="form-outline mb-2">
+            <input type="text" id="form3Example3cg" name="дштл" class="form-control form-control-lg" required="" autofocus="" placeholder="Введите ссылку на фильм" />
+            <label class="form-label" for="form3Example3cg">Ссылка на фильм</label>
         </div>
-        <div class="form-group">
-            <label for="img">Ссылка</label>
-            <input type="text" name="link" placeholder="Заставка" id="img" class="form-control">
-            <label></label>
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" name="sendMe" value="1">Сохранить карточку</button>
         </div>
-            <a class="btn btn-primary" href="{{ route('user.moderCreat') }}">Создать</a>
     </form>
 
 @endsection
