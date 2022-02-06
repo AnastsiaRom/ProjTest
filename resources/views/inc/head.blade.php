@@ -19,13 +19,13 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/signUp">SignUp<span class="sr-only"></span></a>
+                    <a class="nav-link" href="authent/signUp">SignUp<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <p class="nav-link">/</p>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/signIn">SignIn<span class="sr-only"></span></a>
+                    <a class="nav-link" href="authent/signIn">SignIn<span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>

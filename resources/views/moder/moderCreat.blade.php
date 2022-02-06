@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-outline mb-2">
-            <input type="text" id="form3Example3cg" name="дштл" class="form-control form-control-lg" required="" autofocus="" placeholder="Введите ссылку на фильм" />
+            <input type="text" id="form3Example3cg" name="link" class="form-control form-control-lg" required="" autofocus="" placeholder="Введите ссылку на фильм" />
             <label class="form-label" for="form3Example3cg">Ссылка на фильм</label>
         </div>
 

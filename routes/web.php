@@ -5,30 +5,31 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Client\Request;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 use App\User;
 
-Route::get('/', function () 
+Route::get('/', function ()
 {
-    return view('portal');});
+    return view('portal/portal');});
 
-Route::get('/portalCarta', function () 
+Route::get('/portalCarta', function ()
 {
-    return view('portalCarta');});
+    return view('portal/portalCarta');});
 
 
 Route::name('user.')->group(function ()
 {
-    Route::view('/moderHome', 'moderHome')->middleware('auth')->name('moderHome');
+    Route::view('/moderHome', 'moder/moderHome')->middleware('auth')->name('moderHome');
     Route::get('/signIn', function ()
     {
         if (Auth::check()) {
             return redirect(route('user.moderHome'));
         }
-        return view('signIn');
+        return view('authent/signIn');
     })->name('signIn');
 
-    Route::post('/signIn', [\App\Http\Controllers\LoginController::class, 'signIn']);
+    Route::post('/signIn', [LoginController::class, 'signIn']);
 
     Route::get('logout', function ()
     {
@@ -41,25 +42,25 @@ Route::name('user.')->group(function ()
         if(Auth::check()){
             return redirect(route('user.moderHome'));
         }
-        return view('signUp');
+        return view('authent/signUp');
     })->name('signUp');
 
-    Route::post('/signUp', [\App\Http\Controllers\RegisterController::class, 'save']);
+    Route::post('/signUp', [RegisterController::class, 'save']);
 
-    Route::get('adminHome', ['middleware' => 'isAdmin', function () 
+    Route::get('adminHome', ['middleware' => 'isAdmin', function ()
     {
-        return view('adminHome');
-    }]);
+        return view('admin/adminHome');
+    }])->name('adminHome');
 
-    Route::get('adminChange', ['middleware' => 'isAdmin', function () 
+    Route::get('adminChange', ['middleware' => 'isAdmin', function ()
     {
-        return view('adminChange');
-    }]);
+        return view('admin/adminChange');
+    }])->name('adminChange');
 
 
     // ПРИМЕР
     Route::prefix('auth')->group(function() {
-        Route::post('/signin', [\App\Http\Controllers\LoginController::class, 'signin']);
+        Route::post('/signI n', [LoginController::class, 'signIn']);
     });
 
     Route::prefix('film')->group(function() {
@@ -84,14 +85,14 @@ Route::name('user.')->group(function ()
     //     return "Ogo";
     // })->name('moderSubmit');
 
-    Route::get('/moderCreat', function () { 
-        return view('moderCreat'); 
+    Route::get('/moderCreat', function () {
+        return view('moderCreat');
     })->name('moderCreat');
 
     Route::get('/moderCreat', [\App\Http\Controllers\CartController::class, 'create']);
 
-    Route::post('/moderCreat/show', function ($request) { 
-        return Request::all(); 
+    Route::post('/moderCreat/show', function ($request) {
+        return Request::all();
     })->name('moderCreat/show');
 
     // Route::get('/moderCarta', function ()
