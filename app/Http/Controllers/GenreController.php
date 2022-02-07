@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Genre;
+use App\Models\Genre;
 use Illuminate\Http\Request;
-use \Illuminate\Http\Response;
 
 class GenreController extends Controller
 {
@@ -50,7 +49,7 @@ class GenreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Genre  $genre
+     * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
     public function show(Genre $genre)
@@ -61,7 +60,7 @@ class GenreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Genre  $genre
+     * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
     public function edit(Genre $genre)
@@ -73,7 +72,7 @@ class GenreController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Genre  $genre
+     * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Genre $genre)
@@ -84,7 +83,7 @@ class GenreController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Genre  $genre
+     * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
     public function destroy(Genre $genre)

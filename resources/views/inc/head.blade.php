@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="col-9">
-            <a class="navbar-brand" style=" margin-left: 5%"  href="/"><p class="logo_text" style=" margin-left: 10%">ProjTest</p></a>
+            <a class="navbar-brand" style=" margin-left: 5%"  href="portal/"><p class="logo_text" style=" margin-left: 10%">ProjTest</p></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
