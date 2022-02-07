@@ -32,7 +32,7 @@
                                         <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" name="sendMe" value="1">Sign In</button>
                                     </div>
 
-                                    <p class="text-center text-muted mt-3 mb-0">Don't have an account? <a href="authent/signUp" class="fw-bold text-body"><u>Register now</u></a></p>
+                                    <p class="text-center text-muted mt-3 mb-0">Don't have an account? <a href="authent.signUp" class="fw-bold text-body"><u>Register now</u></a></p>
 
                                 </form>
 

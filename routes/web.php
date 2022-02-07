@@ -15,16 +15,15 @@ Route::prefix('portal')->group(function() {
 });
 
 //только для auth user - admin, moder
-Route::name('user/')->group(function () {
+Route::name('user.')->group(function () {
   Route::prefix('auth')->group(function() {
-    Route::post('/signI n', [LoginController::class, 'signIn']);
     Route::post('/signUp', [RegisterController::class, 'save']);
     Route::post('/signIn', [LoginController::class, 'signIn']);
     Route::get('signIn', function () {
       if (Auth::check()) {
-        return redirect(route('user/home'));
+        return redirect(route('user.home'));
       }
-      return view('signIn');
+      return view('authent/signIn');
     })->name('signIn');
     Route::get('logout', function () {
       Auth::logout();
@@ -32,11 +31,10 @@ Route::name('user/')->group(function () {
     })->name('logout');
     Route::get('/signUp', function () {
       if(Auth::check()){
-        return redirect(route('user/home'));
+        return redirect(route('user.home/moder'));
       }
-      return view('/signUp');
+      return view('authent/signUp');
     })->name('signUp');
-    Route::get('home', ['middleware' => 'isAdmin', function () { return view('admin/home'); }])->name('home');
   });
 
   Route::prefix('film')->group(function() {
@@ -52,8 +50,8 @@ Route::name('user/')->group(function () {
   });
 
   Route::prefix('home')->group(function() {
-    Route::view('/home', 'moder/home')->middleware('auth')->name('home');
-    Route::view('/home', 'admin/home')->middleware('auth')->name('home');
+    Route::view('/moder', 'moder/home')->middleware('auth')->name('moder');
+    Route::get('home', ['middleware' => 'isAdmin', function () { return view('admin/home'); }])->name('home');
   });
 
   Route::prefix('status')->group(function() {

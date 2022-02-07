@@ -27,7 +27,7 @@
             @empty
                 <tr>
                     <td colspan="2">
-                        <h1 class="text">Жанр отсутсвует</h1>
+                        <h1 class="text">Жанр отсутствует</h1>
                     </td>
                 </tr>
             @endforelse
