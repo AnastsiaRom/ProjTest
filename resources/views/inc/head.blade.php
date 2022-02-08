@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="col-9">
-            <a class="navbar-brand" style=" margin-left: 5%"  href="portal/"><p class="logo_text" style=" margin-left: 10%">ProjTest</p></a>
+            <a class="navbar-brand" style=" margin-left: 5%"  href="{{ route('index') }}"><p class="logo_text" style=" margin-left: 10%">ProjTest</p></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,13 +19,13 @@
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="authent/signUp">SignUp<span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{ route('auth.signup') }}">SignUp<span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active">
                     <p class="nav-link">/</p>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="authent/signIn">SignIn<span class="sr-only"></span></a>
+                    <a class="nav-link" href="{{ route('auth.signin') }}">SignIn<span class="sr-only"></span></a>
                 </li>
             </ul>
         </div>

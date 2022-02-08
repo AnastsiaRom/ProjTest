@@ -8,9 +8,9 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-4">
-                                <h2 class="text-uppercase text-center mb-5">Авторизация</h2>
+                                <h2 class="text-uppercase text-center mb-5">Регистрация</h2>
 
-                                <form class="form-signup" method="post" action="{{ route('user.signIn') }}">
+                                <form class="form-signup" method="post" action="{{ route('auth.register') }}">
                                     @csrf
                                     <div class="form-outline mb-2">
                                         <input type="email" id="form3Example3cg" name="email" class="form-control form-control-lg" required="" autofocus="" placeholder="Email" />
@@ -28,11 +28,23 @@
                                         @enderror
                                     </div>
 
-                                    <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" name="sendMe" value="1">Sign In</button>
+                                    <div class="form-check d-flex justify-content-center mb-3">
+                                        <input
+                                            class="form-check-input me-2"
+                                            type="checkbox"
+                                            value=""
+                                            id="form2Example3cg"
+                                        />
+                                        <label class="form-check-label" for="form2Example3g">
+                                            I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                                        </label>
                                     </div>
 
-                                    <p class="text-center text-muted mt-3 mb-0">Don't have an account? <a href="authent.signUp" class="fw-bold text-body"><u>Register now</u></a></p>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" name="sendMe" value="1">Sign Up</button>
+                                    </div>
+
+                                    <p class="text-center text-muted mt-3 mb-0">Have already an account? <a href="{{ route('auth.signin') }}" class="fw-bold text-body"><u>Login here</u></a></p>
 
                                 </form>
 

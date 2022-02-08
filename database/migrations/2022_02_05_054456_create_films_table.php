@@ -6,36 +6,36 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFilmsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('films', function (Blueprint $table) {
-            $table->id();
-            $table->string('title', 120)->nullable();
-            
-            $table->string('path'); // путь к файлу - где лежит
-            
-            $table->text('description', 1000)->nullable(false);
-            $table->string('link')->nullable();
-            
-            $table->integer('user_id')->comment('создатель');
-            $table->integer('approved_by')->nullable(); //кто одобрил
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('films', function (Blueprint $table) {
+      $table->id();
+      $table->string('title', 120)->nullable();
 
-            $table->timestamps();
-        });
-    }
+      $table->string('path'); // путь к файлу - где лежит
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('films');
-    }
+      $table->text('description', 1000)->nullable(false);
+      $table->string('link')->nullable();
+
+      $table->integer('user_id')->comment('создатель');
+      $table->integer('approved_by')->nullable(); //кто одобрил
+
+      $table->timestamps();
+    });
+  }
+
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('films');
+  }
 }

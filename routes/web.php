@@ -1,63 +1,82 @@
 <?php
 
-
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FilmController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PortalController;
 
-Route::prefix('portal')->group(function() {
-  Route::get('/portal', function () { return view('portal/portal'); });
-  Route::get('/film', function () { return view('portal/film'); });
+
+
+
+// -----------------------
+// | Views
+// -----------------------
+Route::get('/',     [PortalController::class, 'index'])->name('index');
+Route::get('/home', [PortalController::class, 'home'])->name('home');
+
+
+
+// Route::prefix('portal')->name('portal')->group(function () {
+
+//   // Route::get('/film', function () {
+//   //   return view('portal/film');
+//   // });
+// });
+
+Route::prefix('auth')->name('auth.')->group(function () {
+  Route::get('signin', [AuthController::class, 'signin'])->name('signin');
+  Route::get('signup', [AuthController::class, 'signup'])->name('signup');
+
+  Route::post('/register', [AuthController::class, 'register'])->name('register');
+  Route::post('/login',    [AuthController::class, 'login'])->name('login');
+  // Route::get('logout', [HomeController::class, 'logout']);
 });
+
+Route::prefix('film')->name('film.')->group(function () {
+  Route::get('/show/{film_id}', [FilmController::class, 'show'])->name('show');
+  Route::get('/create',         [FilmController::class, 'create'])->name('create');
+
+  Route::post('/',              [FilmController::class, 'store'])->name('store');
+});
+
 
 //только для auth user - admin, moder
-Route::name('user.')->group(function () {
-  Route::prefix('auth')->group(function() {
-    Route::post('/signUp', [RegisterController::class, 'save']);
-    Route::post('/signIn', [LoginController::class, 'signIn']);
-    Route::get('signIn', function () {
-      if (Auth::check()) {
-        return redirect(route('user.home'));
-      }
-      return view('authent/signIn');
-    })->name('signIn');
-    Route::get('logout', function () {
-      Auth::logout();
-      return redirect('portal/portal');
-    })->name('logout');
-    Route::get('/signUp', function () {
-      if(Auth::check()){
-        return redirect(route('user.home/moder'));
-      }
-      return view('authent/signUp');
-    })->name('signUp');
-  });
+// Route::name('user')->group(function () {
 
-  Route::prefix('film')->group(function() {
-    Route::get('/filmCreate', function () { return view('film/filmCreate'); })->name('filmCreate');
-    Route::get('/filmCreate', [FilmController::class, 'create']);
-    Route::post('/show', function ($request) { return Request::all(); })->name('show');
-    Route::redirect('/filmCreate', 'user');
-    Route::resource('genre', 'GenreController');
-    Route::resource('film', 'FilmController');
-    // Route::post('/', [FilmController::class, 'store']);
-    // Route::put('/',  [FilmController::class, 'update']);
-    // Route::delete('/', [FilmController::class, 'delete']);
-  });
+//   Route::prefix('film')->group(function () {
+//     Route::get('/filmCreate', function () {
+//       return view('film/filmCreate');
+//     })->name('filmCreate');
 
-  Route::prefix('home')->group(function() {
-    Route::view('/moder', 'moder/home')->middleware('auth')->name('moder');
-    Route::get('home', ['middleware' => 'isAdmin', function () { return view('admin/home'); }])->name('home');
-  });
+//     Route::get('/filmCreate', [FilmController::class, 'create']);
 
-  Route::prefix('status')->group(function() {
-    Route::get('change', ['middleware' => 'isAdmin', function () {
-      return view('admin/change');
-    }])->name('status');
-  });
+//     Route::post('/show', function ($request) {
+//       return Request::all();
+//     })->name('show');
 
-});
+//     Route::redirect('/filmCreate', 'user');
+
+//     // Route::resource('genre', 'GenreController');
+//     // Route::resource('film', 'FilmController');
+
+//     // Route::post('/', [FilmController::class, 'store']);
+//     // Route::put('/',  [FilmController::class, 'update']);
+//     // Route::delete('/', [FilmController::class, 'delete']);
+//   });
+
+//   Route::prefix('home')->group(function () {
+//     Route::view('/moder', 'moder/home')->middleware('auth')->name('moder');
+//     Route::get('home', ['middleware' => 'isAdmin', function () {
+//       return view('admin/home');
+//     }])->name('home');
+//   });
+
+//   Route::prefix('status')->group(function () {
+//     Route::get('change', ['middleware' => 'isAdmin', function () {
+//       return view('admin/change');
+//     }])->name('status');
+//   });
+// });

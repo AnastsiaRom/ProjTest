@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Создание карточки фильма</h1>
-    <form action="{{ route('user.filmCreat/show') }}" method="POST">
+    <form action="{{ route('film.store') }}" method="POST">
         @csrf
 
         <div class="form-outline mb-2">

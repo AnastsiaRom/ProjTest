@@ -2,85 +2,48 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\User;
+use App\Models\Film;
 use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function index()
-    {
-        $users = User::get();
-        return view('moderCreat', compact('users'));
-    }
+  public function index()
+  {
+    // TODO: вернуть список фильмов по пользователю
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function create()
-    {
-        return view('filmCreate/show');
-    }
+    // $film_list = Film::get();
+    // return view('', compact('film_list'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-    }
+  public function create()
+  {
+    return view('film.create');
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function show(Cart $cart)
-    {
-        return view('filmCreate/show');
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
-     */
-    public function edit(Cart $cart)
-    {
-        return view('moderCreat');
-    }
+  public function show(int $film_id)
+  {
+    // TODO: Достать фильм по id и вернуть
+    // return view('film.show');
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Cart $cart)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Cart  $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Cart $cart)
-    {
-        //
-    }
+
+  public function store(Request $request)
+  {
+    // TODO: Сохранить фильм
+
+    $validated = $request->validate([
+      'title' => 'required',
+      'description' => 'required',
+      'link' => 'required',
+    ]);
+
+    $film = new Film();
+    $film->fill($validated);
+    $film->user_id = auth()->user()->id;
+    $film->save();
+
+    return redirect(route('film.show', ['film_id' => $film->id]));
+  }
 }

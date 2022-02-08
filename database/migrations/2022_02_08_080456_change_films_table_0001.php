@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFilmsGenresPivotTable extends Migration
+class ChangeFilmsTable0001 extends Migration
 {
   /**
    * Run the migrations.
@@ -13,11 +13,8 @@ class CreateFilmsGenresPivotTable extends Migration
    */
   public function up()
   {
-    Schema::create('film_genre', function (Blueprint $table) {
-      $table->id();
-
-      $table->integer('film_id');
-      $table->integer('genre_id');
+    Schema::table('films', function (Blueprint $table) {
+      $table->string('path')->nullable()->change();
     });
   }
 
@@ -28,6 +25,8 @@ class CreateFilmsGenresPivotTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('film_genre');
+    Schema::table('films', function (Blueprint $table) {
+      $table->string('path')->nullable(false)->change();
+    });
   }
 }
