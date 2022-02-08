@@ -11,7 +11,7 @@
     <div class="container">
         <form action="{{ route('genre.store') }}" method="post">
             @csrf
-            @include('layouts._form')
+            @include('genre.create')
 
         </form>
     </div>

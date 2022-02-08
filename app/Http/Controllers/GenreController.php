@@ -7,87 +7,43 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('adminCreateGenres', [
-            'genres' => Genre::get()
-        ]);
-    }
+  public function index()
+  {
+    // TODO: вернуть список категорий
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('adminCreate', [
-            'category' => [],
-            'genres' => Genre::with('children')->where('paren_id', 0)->get(),
-            'delimiter'=> ''
-        ]);
-    }
+    // $film_list = Genre::get();
+    // return view('', compact('genre_list'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        Genre::created($request->all());
+  public function create()
+  {
+    return view('genre.create');
+  }
 
-        return redirect()->route('user.genre.index');
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Genre  $genre
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Genre $genre)
-    {
-        //
-    }
+  public function show(int $genre_id)
+  {
+    // TODO: Достать категорию по id и вернуть
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Genre  $genre
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Genre $genre)
-    {
-        //
-    }
+    return redirect(route('genre.show', ['genre_id' => $genres->id]));
+    // return view('genre.show') ;
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Genre  $genre
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Genre $genre)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Genre  $genre
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Genre $genre)
-    {
-        //
-    }
+
+  public function store(Request $request)
+  {
+    // TODO: Сохранить категорию
+
+    $validated = $request->validate([
+      'category' => 'required',
+    ]);
+
+    $genres = new Genre();
+    $genres->fill($validated);
+    //$genre->user_id = auth()->user()->id;
+    $genres->save();
+
+    return redirect(route('genre.show', ['paren_id' => $genres->id]));
+  }
 }

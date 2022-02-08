@@ -26,7 +26,7 @@ class FilmController extends Controller
     // TODO: Достать фильм по id и вернуть
 
     return redirect(route('film.show', ['film_id' => $film->id]));
-    // return view('film.show');
+    // return view('film.show') ;
   }
 
 

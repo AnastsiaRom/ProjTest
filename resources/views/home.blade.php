@@ -4,7 +4,7 @@
   <h1>Вы успешно авторизировались!</h1>
 
   @if(Auth::user()->isAdmin())
-    Здравствуй, Admin! <a class="nav-link" href="admin/home">За работу<span class="sr-only"></span></a>
+    Здравствуй, Admin! <a class="nav-link" href="{{ route('genre.create') }}">За работу<span class="sr-only"></span></a>
   @else
     Здравствуй, Модератор! <a class="nav-link" href="{{ route('film.create') }}">Создать фильм<span class="sr-only"></span></a>
   @endif

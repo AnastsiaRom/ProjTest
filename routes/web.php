@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\PortalController;
 
@@ -40,6 +41,13 @@ Route::prefix('film')->name('film.')->group(function () {
   Route::get('/create',         [FilmController::class, 'create'])->name('create');
 
   Route::post('/',              [FilmController::class, 'store'])->name('store');
+});
+
+Route::prefix('genre')->name('genre.')->group(function () {
+  Route::get('/show/{genre_id}', [GenreController::class, 'show'])->name('show');
+  Route::get('/create',         [GenreController::class, 'create'])->name('create');
+
+  Route::post('/',              [GenreController::class, 'store'])->name('store');
 });
 
 

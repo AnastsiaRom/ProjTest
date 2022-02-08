@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
-    protected $guarded = [];
+    protected $guarded = [
+      'category',
+    ];
 
 
     public function children()
@@ -14,7 +16,7 @@ class Genre extends Model
         return $this->hasMany(self::class, 'paren_id');
     }
 
-    public function films()
+    public function film()
     {
         return $this->belongsToMany(Film::class, 'film_genre', 'genre_id', 'film_id');
     }

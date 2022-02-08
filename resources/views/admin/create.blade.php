@@ -15,16 +15,16 @@
                 </tr>
             </thead>
             <tbody>
-            @forelse( $genres as $genre )
+{{--            @forelse( $genres as $genre )--}}
                 <tr>
-                    <td>{{ $genre->category ?? '' }}</td>
+                    <td>{{ $genres->category ?? '' }}</td>
                     <td class="text-right">
                         <a class="btn btn-primary" href="{{ route('genre.edit', $category) }}">Редактировать</a>
                     </td>
 
                 </tr>
 
-            @empty
+{{--            @empty--}}
                 <tr>
                     <td colspan="2">
                         <h1 class="text">Жанр отсутствует</h1>
