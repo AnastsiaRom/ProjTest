@@ -16,7 +16,6 @@
     <div class="form-group">
       <select name="paren_id" class="form-control">
         <option value="0">-- без родительской категории --</option>
-
       </select>
     </div>
 

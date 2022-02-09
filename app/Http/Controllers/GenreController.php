@@ -41,4 +41,11 @@ class GenreController extends Controller
 
     return redirect(route('genre.show', ['genre_id' => $genre->id]));
   }
+
+  public function film()
+  {
+    $genre_list = Genre::query()->get();
+
+    return view('genre.index', compact('genre_list'));
+  }
 }

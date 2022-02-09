@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+  <?php
+  use App\Models\Genre;
+  $genre_list = Genre::query()->get();;
+  ?>
+
     <h1>Создание карточки фильма</h1>
     <form action="{{ route('film.store') }}" method="POST">
         @csrf
@@ -27,10 +32,14 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         Категория
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Действие</a></li>
-                        <li><a class="dropdown-item" href="#">Другое действие</a></li>
-                        <li><a class="dropdown-item" href="#">Что-то еще здесь</a></li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" >
+                      <form action="{{ route('genre.store') }}" method="POST">
+
+                        @foreach ($genre_list as $genre)
+                          <li><a class="dropdown-item" href="#">{{ $genre->title }}</a></li>
+                        @endforeach
+                      </form>
+
                     </ul>
                 </div>
             </label>
