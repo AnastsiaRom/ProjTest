@@ -10,13 +10,13 @@
 
       <hr>
 
-      <input type="text" id="form3Example3cg" name="category" class="form-control form-control-lg" required="" autofocus="" placeholder="Наименование категории" />
+      <input type="text" id="form3Example3cg" name="title" class="form-control form-control-lg" required="" autofocus="" placeholder="Наименование категории" />
     </div>
 
     <div class="form-group">
       <select name="paren_id" class="form-control">
         <option value="0">-- без родительской категории --</option>
-        @include('genre.genres')
+
       </select>
     </div>
 

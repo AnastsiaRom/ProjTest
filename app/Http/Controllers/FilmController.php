@@ -11,8 +11,9 @@ class FilmController extends Controller
   {
     // TODO: вернуть список фильмов по пользователю
 
-    // $film_list = Film::get();
-    // return view('', compact('film_list'));
+    $film_list = Film::query()->get();
+
+    return view('film.index', compact('film_list'));
   }
 
   public function create()
@@ -23,18 +24,15 @@ class FilmController extends Controller
 
   public function show(int $film_id)
   {
-    // TODO: Достать фильм по id и вернуть
+    $film = Film::findOrFail($film_id);
 
-    return redirect(route('film.show', ['film_id' => $film->id]));
-    // return view('film.show') ;
+    return view('film.show', compact('film'));
   }
 
 
 
   public function store(Request $request)
   {
-    // TODO: Сохранить фильм
-
     $validated = $request->validate([
       'title' => 'required',
       'description' => 'required',

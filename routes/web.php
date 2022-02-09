@@ -33,10 +33,11 @@ Route::prefix('auth')->name('auth.')->group(function () {
 
   Route::post('/register', [AuthController::class, 'register'])->name('register');
   Route::post('/login',    [AuthController::class, 'login'])->name('login');
-  // Route::get('logout', [HomeController::class, 'logout']);
+  Route::get('logout',     [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::prefix('film')->name('film.')->group(function () {
+  Route::get('/index',          [FilmController::class, 'index'])->name('index');
   Route::get('/show/{film_id}', [FilmController::class, 'show'])->name('show');
   Route::get('/create',         [FilmController::class, 'create'])->name('create');
 
@@ -44,10 +45,11 @@ Route::prefix('film')->name('film.')->group(function () {
 });
 
 Route::prefix('genre')->name('genre.')->group(function () {
+  Route::get('/index',           [GenreController::class, 'index'])->name('index');
   Route::get('/show/{genre_id}', [GenreController::class, 'show'])->name('show');
-  Route::get('/create',         [GenreController::class, 'create'])->name('create');
+  Route::get('/create',          [GenreController::class, 'create'])->name('create');
 
-  Route::post('/',              [GenreController::class, 'store'])->name('store');
+  Route::post('/',               [GenreController::class, 'store'])->name('store');
 });
 
 

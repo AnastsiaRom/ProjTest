@@ -7,5 +7,7 @@
 @endsection
 
 @section('content')
-  <h1>Жанр создан</h1>
+  @foreach ($genre_list as $genre)
+    <div>{{ $genre->title }}</div>
+  @endforeach
 @endsection

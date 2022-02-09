@@ -9,10 +9,9 @@ class GenreController extends Controller
 {
   public function index()
   {
-    // TODO: вернуть список категорий
+    $genre_list = Genre::query()->get();
 
-    // $film_list = Genre::get();
-    // return view('', compact('genre_list'));
+    return view('genre.index', compact('genre_list'));
   }
 
   public function create()
@@ -23,27 +22,23 @@ class GenreController extends Controller
 
   public function show(int $genre_id)
   {
-    // TODO: Достать категорию по id и вернуть
+    $genre = Genre::findOrFail($genre_id);
 
-    return redirect(route('genre.show', ['genre_id' => $genres->id]));
-    // return view('genre.show') ;
+    return view('genre.show', compact('genre'));
   }
 
 
 
   public function store(Request $request)
   {
-    // TODO: Сохранить категорию
-
     $validated = $request->validate([
-      'category' => 'required',
+      'title' => 'required',
     ]);
 
-    $genres = new Genre();
-    $genres->fill($validated);
-    //$genre->user_id = auth()->user()->id;
-    $genres->save();
+    $genre = new Genre();
+    $genre->fill($validated);
+    $genre->save();
 
-    return redirect(route('genre.show', ['paren_id' => $genres->id]));
+    return redirect(route('genre.show', ['genre_id' => $genre->id]));
   }
 }

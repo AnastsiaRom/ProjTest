@@ -9,5 +9,5 @@
     Здравствуй, Модератор! <a class="nav-link" href="{{ route('film.create') }}">Создать фильм<span class="sr-only"></span></a>
   @endif
 
-  <a class="nav-link" href="/logout">Выйти из аккаунта<span class="sr-only"></span></a>
+  <a class="nav-link" href="{{ route('auth.logout') }}">Выйти из аккаунта<span class="sr-only"></span></a>
 @endsection
