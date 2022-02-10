@@ -75,7 +75,7 @@ class AuthController extends Controller
   {
     if (Auth::logout()) {
       Auth::logout();
-      return redirect('portal/portal');
+      return view(route('home'));
     }
   }
 }

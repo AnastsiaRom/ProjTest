@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class FilmController extends Controller
 {
   public function index()
   {
-    // TODO: вернуть список фильмов по пользователю
-
     $film_list = Film::query()->get();
 
     return view('film.index', compact('film_list'));
@@ -18,7 +18,9 @@ class FilmController extends Controller
 
   public function create()
   {
-    return view('film.create');
+    $genre_list = Genre::query()->get();
+
+    return view('film.create', compact('genre_list'));
   }
 
 
@@ -37,12 +39,22 @@ class FilmController extends Controller
       'title' => 'required',
       'description' => 'required',
       'link' => 'required',
+      'genre_id_list' => 'required',
+    ]);
+
+    $input = Arr::only($validated, [
+      'title',
+      'description',
+      'link',
     ]);
 
     $film = new Film();
-    $film->fill($validated);
+    $film->fill($input);
     $film->user_id = auth()->user()->id;
+
     $film->save();
+
+    $film->genres()->sync($validated['genre_id_list']);
 
     return redirect(route('film.show', ['film_id' => $film->id]));
   }

@@ -7,5 +7,5 @@
 @endsection
 
 @section('content')
-  <h1>Жанр создан</h1>
+  <h1>Карточка создана</h1>
 @endsection
