@@ -18,15 +18,6 @@ use App\Http\Controllers\PortalController;
 Route::get('/',     [PortalController::class, 'index'])->name('index');
 Route::get('/home', [PortalController::class, 'home'])->name('home');
 
-
-
-// Route::prefix('portal')->name('portal')->group(function () {
-
-//   // Route::get('/film', function () {
-//   //   return view('portal/film');
-//   // });
-// });
-
 Route::prefix('auth')->name('auth.')->group(function () {
   Route::get('signin', [AuthController::class, 'signin'])->name('signin');
   Route::get('signup', [AuthController::class, 'signup'])->name('signup');

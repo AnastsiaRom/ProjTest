@@ -23,12 +23,12 @@
           </div> --}}
 
           <div class="form-outline mb-2">
-            <output type="text" id="form3Example3cg" name="{{ $genre->description }}" class="form-control form-control-lg" required="" autofocus="" placeholder="{{ $genre->description }}" />
+            <output type="text" id="form3Example3cg" name="{{ $genre->description }}" class="form-control form-control-lg" required="" autofocus="" placeholder="{{ $genre->description }}">
             <label class="form-label" for="form3Example3cg">{{ $genre->description }}</label>
           </div>
 
           <div class="form-outline mb-2">
-            <output type="text" id="form3Example3cg" name="{{ $genre->link }}" class="form-control form-control-lg" required="" autofocus="" placeholder="{{ $genre->link }}" />
+            <output type="text" id="form3Example3cg" name="{{ $genre->link }}" class="form-control form-control-lg" required="" autofocus="" placeholder="{{ $genre->link }}">
             <label class="form-label" for="form3Example3cg">{{ $genre->link }}</label>
           </div>
         </div>

@@ -15,19 +15,16 @@
 </head>
 <body>
     @include('inc.head')
-    <div class="container mt-5">
+      <div class="container mt-5">
         <div class="row">
             <div class="col-8">
-                @yield('content')
+              @yield('content')
             </div>
             <div class="col-4">
-                <a></a>
+              <a></a>
             </div>
         </div>
-    </div>
-
-
-
+      </div>
     @include('inc.footer')
 </body>
 </html>

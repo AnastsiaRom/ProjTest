@@ -58,4 +58,26 @@ class FilmController extends Controller
 
     return redirect(route('film.show', ['film_id' => $film->id]));
   }
+
+  public function update(Request $request, int $film_id)
+  {
+    $validated = $request->validate([
+      'title' => 'required',
+      'description' => 'required',
+      'link' => 'required',
+      'genre_id_list' => 'required',
+    ]);
+
+    Film::whereId('films.id')->update($validated);
+
+    return redirect(route('film.show'));
+  }
+
+  public function delete(int $film_id)
+  {
+    $film = Film::findOrFail($film_id);
+    $film->delete();
+
+    return redirect(route('film.show'));
+  }
 }

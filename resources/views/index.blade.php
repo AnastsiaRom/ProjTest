@@ -8,6 +8,7 @@
 @section('content')
     <h1>Главная страница</h1>
 
+    <form>
     <div class="row">
       <div class="col-sm-4">
         <label for="genre_id_list">Жанр</label>
@@ -17,8 +18,13 @@
               <option value="{{ $genre->id }}">{{ $genre->title }}</option>
             @endforeach
           </select>
+
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" name="sendMe" value="1">Выбрать жанр</button>
+          </div>
         </div>
     </div>
+  </form>
 
       <div class="card-container d-flex flex-row">
         @foreach ($film_list as $film)
